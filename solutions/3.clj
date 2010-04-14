@@ -10,7 +10,7 @@
              removed_numbers (filter #(= (rem % p) 0) after_p_squared)
              new_prime_list (clojure.set/difference prime_list removed_numbers)
              next_p (some #(if (> % p) % false) (sort new_prime_list))]
-         (prime n next_p new_prime_list))))))
+         (recur n next_p new_prime_list))))))
 
 (defn prime_factors
   [number]
