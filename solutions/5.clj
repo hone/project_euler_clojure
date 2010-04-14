@@ -1,3 +1,12 @@
+(defn increment-by
+  "lazy seq for increment by x"
+  ([x]
+   (concat [x] (increment-by x x)))
+  ([previous x]
+   (let [n (+ previous x)]
+     (lazy-seq
+       (cons n (increment-by n x))))))
+
 (defn collection_divisible?
   "returns true if the number is divisble by everything in the collection"
   [number coll]
@@ -6,12 +15,13 @@
 (defn smallest_divisible_number
   "returns the smallest divisible number of all the numbers"
   [coll]
-  (+
-    (last
-      (take-while
-        #(not (collection_divisible? % coll))
-        (iterate inc 1)))
-    1))
+  (let [max_number (last (sort coll))]
+    (+
+      (last
+        (take-while
+          #(not (collection_divisible? % coll))
+          (increment-by max_number)))
+      max_number)))
 
 (println (smallest_divisible_number (range 1 11)))
 (println (smallest_divisible_number (range 1 21)))
