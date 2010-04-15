@@ -1,9 +1,11 @@
 (defn factorial
   "Calculate the factorial for a number"
-  [n]
-  (if (= n 1)
-    1
-    (* n (factorial (- n 1)))))
+  ([n]
+   (factorial n 1))
+  ([n acc]
+   (if (= n 1)
+     acc
+     (recur (dec n) (* acc n)))))
 
 (defn sum_digits
   "Sum up the digits of a number"
