@@ -1,13 +1,4 @@
-(defn fib
-  "fibonacci sequence"
-  ;base case
-  ([]
-   (concat [0 1] (fib 0 1)))
-
-  ([a b]
-   (let [n (+ a b)]
-     (lazy-seq
-       (cons n (fib b n))))))
+(load-file "solutions/fibonacci.clj")
 
 (defn sum_even_fib
   "sum of all the even fib numbers up to x"
