@@ -1,16 +1,4 @@
-(defn prime
-  "Sieve of Eratosthenes"
-  ([n]
-   (prime n 2 (set (range 2 (+ n 1)))))
-  ([n p prime_list]
-   (let [p_squared (* p p)]
-     (if (> p_squared n)
-       (sort prime_list)
-       (let [after_p_squared (filter #(>= % p_squared) prime_list)
-             removed_numbers (filter #(= (rem % p) 0) after_p_squared)
-             new_prime_list (clojure.set/difference prime_list removed_numbers)
-             next_p (some #(if (> % p) % false) (sort new_prime_list))]
-         (recur n next_p new_prime_list))))))
+(load-file "solutions/prime.clj")
 
 (defn prime_factors
   [number]
